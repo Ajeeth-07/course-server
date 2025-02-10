@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 //connection to mongodb
 mongoose.connect(
-  "mongodb+srv://shindeajeeth143:ajeeth123@courseserver.hll9o.mongodb.net/?retryWrites=true&w=majority&appName=courseServer"
+  "mongodb+srv://shindeajeeth143:ajeeth123@courseserver.hll9o.mongodb.net/course-app"
 );
 //define schemas
 

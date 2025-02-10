@@ -1,6 +1,9 @@
-import { Admin } from "../db";
+const {Admin} = require("../db")
+const jwt = require("jsonwebtoken");
+const {JWT_SECRET} = require("../config");
 
-function adminMiddleware(req, res, next){
+//Middleware without JWT 
+/* function adminMiddleware(req, res, next){
  //check headers and validate admin from adminDB
  const username = req.headers.username;
  const password = req.headers.password;
@@ -17,6 +20,18 @@ function adminMiddleware(req, res, next){
         });
     }
  })
-}
+} */
+
+ function adminMiddleware(req, res, next){
+    const token = req.headers.authorization;
+    const words = token.split(" ");
+    const jwtToken = words[1];
+    const decodedValue = jwt.verify(jwtToken, JWT_SECRET);
+    if(decodedValue.username){
+        next();
+    }else{
+        res.status(403).json({msg : "token expired"})
+    }
+ }
 
 module.exports =  adminMiddleware;
