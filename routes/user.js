@@ -58,7 +58,7 @@ router.get("/courses", async (req, res) => {
 
 router.post("/courses/:courseId", userMiddleware, async (req, res) => {
   // Implement course purchase logic
-  const username = req.headers.username;
+  const username = req.username;
   const courseId = req.params.courseId;
 
   try {
